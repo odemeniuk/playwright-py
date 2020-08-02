@@ -31,7 +31,7 @@ jobs:
         python -m playwright install
         apt-get update && apt-get install -y wget default-jdk && cd /opt && \
         (wget -c https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz -O - | tar -xz && chmod +x allure-2.7.0/bin/allure)
-        PATH="${PATH}:/opt/allure-2.7.0/bin"
+        export PATH="${PATH}:/opt/allure-2.7.0/bin"
         allure --version
 
 
