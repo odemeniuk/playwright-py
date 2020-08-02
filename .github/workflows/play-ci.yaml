@@ -37,13 +37,17 @@ jobs:
 
     - name: Test
       run: |
-        ls -ll
+        ls -l
         pipenv run pytest --alluredir=./allure-results
+
+    - name: Create Report
+      run: |
+        ls -l
         allure generate allure-results --clean -o allure-report
     - uses: actions/upload-artifact@v2
-       with:
+      with:
         name: allure-report
-        path: ./allure-report
+        path: ./build/reports/allure-report/
 
 #    - name: Create Report
 #      if: always()
