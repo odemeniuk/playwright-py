@@ -37,4 +37,4 @@ jobs:
     - name: Test
       run: |
         ls -ll
-        pipenv run pytest
+        pipenv run pytest --alluredir=./allure-results
