@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:latest
 
 
 # Install Python
@@ -46,6 +46,4 @@ RUN apt-get install -y libnss3 \
 ADD Pipfile /
 RUN pip install --upgrade pip
 RUN pip install pipenv
-RUN pipenv install --deploy
-#RUN pipenv run pytest
 WORKDIR /app

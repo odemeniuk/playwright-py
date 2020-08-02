@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
 echo "-> Installing dependencies"
-pipenv clean
 pipenv install
 pipenv update
-python -m playwright install
+pipenv run python -m playwright install
 
 echo "-> Removing old Allure results"
 rm -r allure-results/* || echo "No results"
 
 echo "-> Start tests"
-pytest --headful  tests --alluredir allure-results
+pipenv run pytest test --alluredir allure-results
 echo "-> Test finished"
 
 echo "-> Generating report"

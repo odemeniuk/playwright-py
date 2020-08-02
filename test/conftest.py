@@ -5,9 +5,9 @@ import json
 
 import pytest
 
-#
-# @pytest.fixture(scope="session")
-# def launch_arguments(request):
-#     return {"slowMo": 100}
+
+@pytest.fixture(scope="session")
+def launch_arguments(request):
+    return {"slowMo": 100}
 #
 
