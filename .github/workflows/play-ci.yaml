@@ -12,8 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: frankescobar/allure-docker-service
     steps:
     - uses: actions/checkout@v2
     - name: Install Python 3.8
@@ -41,13 +39,15 @@ jobs:
         ls -ll
         pipenv run pytest --alluredir=./allure-results
 
-    - name: Create Report
-      if: always()
-#      uses: docker://foundeo/minibox:latest
-      # trying to save history of previous runs if it is exists
-      run: allure generate allure-results --clean -o allure-report
-    - uses: actions/upload-artifact@v1
-      if: always()
-      with:
-        name: allure-report
-        path: ./allure-report
+#    - name: Create Report
+#      if: always()
+#      container:
+#        image: frankescobar/allure-docker-service
+##      uses: docker://foundeo/minibox:latest
+#      # trying to save history of previous runs if it is exists
+#      run: allure generate allure-results --clean -o allure-report
+#    - uses: actions/upload-artifact@v1
+#      if: always()
+#      with:
+#        name: allure-report
+#        path: ./allure-report
