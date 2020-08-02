@@ -1,5 +1,6 @@
 FROM ubuntu:bionic
 
+
 # Install Python
 RUN apt-get update && apt-get install -y python3.8 && apt-get install -y curl
 RUN curl -O https://bootstrap.pypa.io/get-pip.py
@@ -7,6 +8,10 @@ RUN apt-get install -y python3-pip
 RUN apt-get install -y python3-distutils
 RUN python3.8 get-pip.py
 RUN python3.8 -m pip install -U setuptools
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONFAULTHANDLER 1
 
 # Install Allure.
 # See https://github.com/allure-framework/allure-debian/issues/9
@@ -37,15 +42,10 @@ RUN apt-get install -y libnss3 \
                        libxss1 \
                        libasound2
 
+# 4. Install Project dependencies
 ADD Pipfile /
-
-RUN pip install --upgrade pip && \
-    pip install pipenv && \
-    pipenv install && \
-#    export VENV_HOME_DIR=$(pipenv --venv) && \
-#    source $VENV_HOME_DIR/bin/activate && \
-#    export PYTHONPATH="$PYTHONPATH:." && \
-    python -c "import sys;print(sys.path)" && \
-    python -m playwright install
-
+RUN pip install --upgrade pip
+RUN pip install pipenv
+RUN pipenv install --deploy
+#RUN pipenv run pytest
 WORKDIR /app

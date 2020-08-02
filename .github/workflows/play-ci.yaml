@@ -28,7 +28,7 @@ jobs:
         source $VENV_HOME_DIR/bin/activate
         export PYTHONPATH="$PYTHONPATH:."
         python -c "import sys;print(sys.path)"
-        python -m playwright install
+#        python -m playwright install
 #
 #    - name: Node
 #      uses: actions/setup-node@v1
