@@ -42,7 +42,7 @@ jobs:
     - name: Create Report
       if: always()
       # trying to save history of previous runs if it is exists
-      run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true && npm run report
+#      run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history || true && npm run report
     - uses: actions/upload-artifact@v1
       if: always()
       with:
