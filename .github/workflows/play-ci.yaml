@@ -34,10 +34,16 @@ jobs:
 #      uses: actions/setup-node@v1
 #      with:
 #        node-version: 12.x
+
     - name: Test
       run: |
         ls -ll
         pipenv run pytest --alluredir=./allure-results
+        allure generate allure-results --clean -o allure-report
+    - uses: actions/upload-artifact@v2
+       with:
+        name: allure-report
+        path: ./allure-report
 
 #    - name: Create Report
 #      if: always()
