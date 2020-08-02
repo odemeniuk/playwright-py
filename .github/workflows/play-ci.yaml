@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: actions/frankescobar/allure-docker-service
     steps:
     - uses: actions/checkout@v2
     - name: Install Python 3.8
@@ -43,7 +45,6 @@ jobs:
       if: always()
       # trying to save history of previous runs if it is exists
       run: allure generate allure-results --clean -o allure-report
-
     - uses: actions/upload-artifact@v1
       if: always()
       with:
