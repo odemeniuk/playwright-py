@@ -9,7 +9,7 @@ echo "-> Removing old Allure results"
 rm -r allure-results/* || echo "No results"
 
 echo "-> Start tests"
-pytest --headful --alluredir allure-results
+pytest --headful  tests --alluredir allure-results
 echo "-> Test finished"
 
 echo "-> Generating report"
