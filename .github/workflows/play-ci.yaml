@@ -29,7 +29,7 @@ jobs:
         export PYTHONPATH="$PYTHONPATH:."
         python -c "import sys;print(sys.path)"
         python -m playwright install
-        apt-get update && apt-get install -y wget default-jdk && cd /opt && \
+        sudo apt-get update && apt-get install -y wget default-jdk && cd /opt && \
         (wget -c https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz -O - | tar -xz && chmod +x allure-2.7.0/bin/allure)
         export PATH="${PATH}:/opt/allure-2.7.0/bin"
         allure --version
