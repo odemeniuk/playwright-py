@@ -29,7 +29,10 @@ jobs:
         export PYTHONPATH="$PYTHONPATH:."
         python -c "import sys;print(sys.path)"
         python -m playwright install
-#
+        sudo apt-add-repository ppa:qameta/allure
+        sudo apt-get update
+        sudo apt-get install allure
+        allure --version
 #    - name: Node
 #      uses: actions/setup-node@v1
 #      with:
