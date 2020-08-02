@@ -43,8 +43,7 @@ jobs:
       steps:
       - uses: actions/frankescobar/allure-docker-service@v1
       - run: allure generate allure-results --clean -o allure-report
-      - uses: actions/upload-artifact@v1
-       if: always()
-       with:
+      - uses: actions/upload-artifact@v2
+      with:
         name: allure-report
         path: ./allure-report
