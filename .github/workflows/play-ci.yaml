@@ -40,10 +40,12 @@ jobs:
         pipenv run pytest --alluredir=./allure-results
 
     - name: Create Report
-      steps:
-      - uses: actions/frankescobar/allure-docker-service@v1
-      - run: allure generate allure-results --clean -o allure-report
-      - uses: actions/upload-artifact@v2
+      if: always()
+      # trying to save history of previous runs if it is exists
+      run: allure generate allure-results --clean -o allure-report
+
+    - uses: actions/upload-artifact@v1
+      if: always()
       with:
         name: allure-report
         path: ./allure-report
