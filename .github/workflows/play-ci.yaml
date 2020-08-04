@@ -23,11 +23,11 @@ jobs:
         python -m pip install --upgrade pip
         python3 --version
         pip install pipenv
-        pipenv install
-        export VENV_HOME_DIR=$(pipenv --venv)
-        source $VENV_HOME_DIR/bin/activate
-        export PYTHONPATH="$PYTHONPATH:."
-        python -c "import sys;print(sys.path)"
+        pipenv install --dev
+#        export VENV_HOME_DIR=$(pipenv --venv)
+#        source $VENV_HOME_DIR/bin/activate
+#        export PYTHONPATH="$PYTHONPATH:."
+#        python -c "import sys;print(sys.path)"
         python -m playwright install
         curl -o allure-2.7.0.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz
         sudo tar -zxvf allure-2.7.0.tgz -C /opt/
@@ -47,18 +47,5 @@ jobs:
         allure generate -c ./allure-results -o ./allure-report
     - uses: actions/upload-artifact@v2
       with:
-        name: allure-report
-        path: ./allure-report
-
-#    - name: Create Report
-#      if: always()
-#      container:
-#        image: frankescobar/allure-docker-service
-##      uses: docker://foundeo/minibox:latest
-#      # trying to save history of previous runs if it is exists
-#      run: allure generate allure-results --clean -o allure-report
-#    - uses: actions/upload-artifact@v1
-#      if: always()
-#      with:
-#        name: allure-report
-#        path: ./allure-report
+        name: allure-results
+        path: ./allure-results
