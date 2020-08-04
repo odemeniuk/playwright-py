@@ -24,6 +24,10 @@ jobs:
         python3 --version
         pip install pipenv
         pipenv install --dev
+        export VENV_HOME_DIR=$(pipenv --venv)
+        source $VENV_HOME_DIR/bin/activate
+        export PYTHONPATH="$PYTHONPATH:."
+        python -c "import sys;print(sys.path)"
         python -m playwright install
         curl -o allure-2.7.0.tgz -Ls https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz
         sudo tar -zxvf allure-2.7.0.tgz -C /opt/
